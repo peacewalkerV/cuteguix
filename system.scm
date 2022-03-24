@@ -45,7 +45,7 @@
    %base-packages))
  (services
   (append
-   (list (service lxqt-desktop-service-type)
+   (list (service mate-desktop-service-type)
          (service openssh-service-type)
          (set-xorg-configuration
           (xorg-configuration
