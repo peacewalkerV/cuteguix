@@ -1,1 +1,3 @@
 #+TITLE: My guix configurations.
+
+[[file:patchi.png]]
