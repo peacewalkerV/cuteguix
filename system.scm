@@ -4,6 +4,8 @@
 (use-modules (gnu))
 (use-service-modules desktop networking ssh xorg)
 
+(define user-name "oh")
+
 (define %my-desktop-services
   (modify-services
    %desktop-services
@@ -29,12 +31,13 @@
  (host-name "scheme")
  (users
   (cons* (user-account
-          (name "oh")
-          (comment "oh")
+          (name user-name)
+          (comment user-name)
           (group "users")
-          (home-directory "/home/oh")
+          (home-directory
+	   (string-append "/home" user-name))
           (supplementary-groups
-           '("wheel" "disk" "netdev" "audio" "video")))
+	   '("wheel" "disk" "netdev" "audio" "video")))
          %base-user-accounts))
  (packages
   (append
@@ -45,7 +48,7 @@
    %base-packages))
  (services
   (append
-   (list (service mate-desktop-service-type)
+   (list (service gnome-desktop-service-type)
          (service openssh-service-type)
          (set-xorg-configuration
           (xorg-configuration
@@ -57,8 +60,7 @@
    (targets (list "/boot/efi"))
    (keyboard-layout keyboard-layout)))
  (swap-devices
-  (list
-   (swap-space (target (uuid "6f66ccb8-dcbc-456a-8a9e-fac7dbfb20d0")))))
+  (list (swap-space (target (uuid "6f66ccb8-dcbc-456a-8a9e-fac7dbfb20d0")))))
  (file-systems
   (cons* (file-system
           (mount-point "/boot/efi")
@@ -75,7 +77,7 @@
            (uuid "081d275f-145d-4b3a-80f7-cb5ba15b1fd4" 'ext4))
           (type "ext4"))
 	 (file-system
-          (mount-point "/mnt/hdd")
+          (mount-point (string-append "/home/" user-name "/hdd"))
           (device (uuid "d1210c09-8ca7-4665-a690-a21f31e0e0ce" 'ext4))
           (type "ext4")
           (create-mount-point? #t))
