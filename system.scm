@@ -35,7 +35,7 @@
           (comment user-name)
           (group "users")
           (home-directory
-	   (string-append "/home" user-name))
+	   (string-append "/home/" user-name))
           (supplementary-groups
 	   '("wheel" "disk" "netdev" "audio" "video")))
          %base-user-accounts))
