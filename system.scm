@@ -27,7 +27,8 @@
 (operating-system
  (locale "en_US.utf8")
  (timezone "Asia/Shanghai")
- (keyboard-layout (keyboard-layout "us,ru" #:options '("ctrl:nocaps")))
+ (keyboard-layout
+  (keyboard-layout "us,ru" #:options '("ctrl:nocaps")))
  (host-name "scheme")
  (users
   (cons* (user-account
