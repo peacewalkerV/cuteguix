@@ -14,15 +14,15 @@
 (home-environment
   (packages
     (map (compose list specification->package+output)
-         (list "mpv"
+         (list "scrot"
+               "maim"
+               "xclip"
+               "maxima"
+               "mpv"
                "emacs-pdf-tools"
                "autoconf"
                "font-ipa-mj-mincho"
-               "stow"
                "krita"
-               "ffmpegthumbs"
-               "maim"
-               "scrot"
                "screenfetch"
                "clojure"
                "sbcl"
@@ -32,8 +32,7 @@
                "zip"
                "git"
                "libreoffice"
-               "firefox"
-               "dolphin")))
+               "firefox")))
   (services
     (list (service
             home-bash-service-type
@@ -44,9 +43,9 @@
                   ("ls" . "ls -p --color=auto")))
               (bashrc
                 (list (local-file
-                        ".config/guix/home-config/.bashrc"
+                        ".config/guix/home-config//.bashrc"
                         "bashrc")))
               (bash-profile
                 (list (local-file
-                        ".config/guix/home-config/.bash_profile"
+                        ".config/guix/home-config//.bash_profile"
                         "bash_profile"))))))))
