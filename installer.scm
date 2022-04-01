@@ -13,6 +13,7 @@
   #:use-module (gnu packages emacs)
   #:use-module (gnu packages linux)
   #:use-module (gnu packages mtools)
+  #:use-module (gnu packages admin)
   #:use-module (gnu packages package-management)
   #:use-module (nongnu packages linux)
   #:export (installation-os-nonfree))
@@ -38,7 +39,7 @@
    ;; Add some extra packages to ease the installation process.
    (packages
     (append
-     (list git curl stow vim emacs-no-x-toolkit)
+     (list git curl vim emacs-no-x-toolkit screenfetch htop)
      (operating-system-packages installation-os)))))
 
 installation-os-nonfree

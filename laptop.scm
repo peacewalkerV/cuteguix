@@ -34,7 +34,7 @@
  (host-name "scheme")
  (kernel linux)
  (firmware (list linux-firmware))
-  (kernel-arguments '("quiet" "modprobe.blacklist=radeon" "net.ifnames=0"))
+ (kernel-arguments '("quiet" "modprobe.blacklist=radeon" "net.ifnames=0"))
  (users
   (cons* (user-account
           (name user-name)
@@ -58,8 +58,7 @@
          (service openssh-service-type)
          (set-xorg-configuration
           (xorg-configuration
-           (keyboard-layout keyboard-layout))
-	  sddm-service-type))
+           (keyboard-layout keyboard-layout))))
    %my-desktop-services))
  (bootloader
   (bootloader-configuration
