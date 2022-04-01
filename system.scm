@@ -6,6 +6,7 @@
 
 (define user-name "oh")
 
+;; Modify the default substitute mirrors.
 (define %my-desktop-services
   (modify-services
    %desktop-services
@@ -24,11 +25,14 @@
                              (q #C1FD53E5D4CE971933EC50C9F307AE2171A2D3B52C804642A7A35F84F3A4EA98#)))"))
 	      %default-authorized-guix-keys))))))
 
+;; The OS definition itself.
 (operating-system
  (locale "en_US.utf8")
  (timezone "Asia/Shanghai")
  (keyboard-layout
-  (keyboard-layout "us,ru" #:options '("ctrl:nocaps")))
+  (keyboard-layout
+   "us,ru"
+   #:options '("ctrl:nocaps" "compose:menu" "grp:alt_shift_toggle" "grp_led:caps" "parens:swap_brackets")))
  (host-name "scheme")
  (users
   (cons* (user-account
