@@ -47,10 +47,8 @@
          %base-user-accounts))
  (packages
   (append
-   (list (specification->package "emacs-native-comp")
-         (specification->package "emacs-exwm")
-         (specification->package "emacs-desktop-environment")
-         (specification->package "nss-certs"))
+   (map specification->package
+	(list "emacs-native-comp" "emacs-exwm" "emacs-desktop-environment" "nss-certs"))
    %base-packages))
  (services
   (append
