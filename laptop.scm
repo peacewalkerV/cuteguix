@@ -6,7 +6,7 @@
 (use-modules (nongnu packages linux))
 (use-service-modules desktop networking ssh xorg)
 
-(define user-name "scm")
+(define user-name "oh")
 
 ;; Modify the default substitute mirrors.
 (define %my-desktop-services
@@ -34,7 +34,8 @@
  (keyboard-layout
   (keyboard-layout
    "us,ru"
-   #:options '("ctrl:nocaps" "compose:menu" "grp:alt_shift_toggle" "grp_led:caps" "parens:swap_brackets")))
+   #:options '("ctrl:nocaps" "compose:menu" "grp:alt_shift_toggle" "parens:swap_brackets")
+   #:model "thinkpad"))
  (host-name "scheme")
  (kernel linux)
  (firmware (list linux-firmware))
@@ -76,20 +77,25 @@
    (targets (list "/dev/sda"))
    (keyboard-layout keyboard-layout)))
  (swap-devices
-  (list (swap-space (target (uuid "beb86695-976a-47bb-b719-bb48e24f3e6b")))))
+  (list (swap-space (target (uuid "6f66ccb8-dcbc-456a-8a9e-fac7dbfb20d0")))))
  (file-systems
   (cons* (file-system
-          (mount-point "/boot")
-          (device (uuid "E772-1E7B" 'fat32))
+          (mount-point "/boot/efi")
+          (device (uuid "5C00-F2EB" 'fat32))
           (type "vfat"))
          (file-system
           (mount-point "/")
           (device
-           (uuid "484c292b-ef9a-46cf-956d-2d70e006b54c" 'ext4))
+           (uuid "13c97113-bc51-4185-bfb9-218c10a298d4" 'ext4))
           (type "ext4"))
          (file-system
           (mount-point "/home")
           (device
-           (uuid "9274e1b2-bc17-4d68-bf49-050978e73384" 'ext4))
+           (uuid "081d275f-145d-4b3a-80f7-cb5ba15b1fd4" 'ext4))
           (type "ext4"))
+	 (file-system
+          (mount-point (string-append "/home/" user-name "/hdd"))
+          (device (uuid "d1210c09-8ca7-4665-a690-a21f31e0e0ce" 'ext4))
+          (type "ext4")
+          (create-mount-point? #t))
          %base-file-systems)))
