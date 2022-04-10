@@ -32,8 +32,9 @@
  (locale "en_US.utf8")
  (timezone "Asia/Shanghai")
  (keyboard-layout
+  (keyboard-layout
    "us,ru"
-   #:options '("ctrl:nocaps" "compose:menu" "grp:alt_shift_toggle" "grp_led:caps" "parens:swap_brackets"))
+   #:options '("ctrl:nocaps" "compose:menu" "grp:alt_shift_toggle" "grp_led:caps" "parens:swap_brackets")))
  (host-name "scheme")
  (kernel linux)
  (firmware (list linux-firmware))
