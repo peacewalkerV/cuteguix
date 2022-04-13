@@ -6,7 +6,7 @@
 (use-modules (nongnu packages linux))
 (use-service-modules desktop networking ssh xorg)
 
-(define user-name "oh")
+(define user-name "rx")
 
 ;; Modify the default substitute mirrors.
 (define %my-desktop-services
@@ -53,23 +53,15 @@
  (packages
   (append
    (map specification->package
-	(list "emacs-native-comp" "emacs-exwm" "emacs-desktop-environment" "nss-certs"))
+	(list "emacs-pgtk-native-comp" "emacs-exwm" "emacs-desktop-environment" "nss-certs"))
    %base-packages))
  (services
   (append
-   (list (service mate-desktop-service-type)
+   (list (service gnome-desktop-service-type)
          (service openssh-service-type)
          (set-xorg-configuration
           (xorg-configuration
-           (keyboard-layout keyboard-layout)
-	   (extra-config
-	    "Section \"InputClass\"
-               Identifier \"Touchpads\"
-               Driver \"libinput\"
-               Option \"Tapping\" \"on\"
-               Option \"DisableWhileTyping\" \"on\"
-               Option \"NaturalScrolling\" \"true\"
-              EndSection"))))
+           (keyboard-layout keyboard-layout))))
    %my-desktop-services))
  (bootloader
   (bootloader-configuration
@@ -77,25 +69,16 @@
    (targets (list "/dev/sda"))
    (keyboard-layout keyboard-layout)))
  (swap-devices
-  (list (swap-space (target (uuid "6f66ccb8-dcbc-456a-8a9e-fac7dbfb20d0")))))
+  (list (swap-space (target (uuid "e2529f91-7227-4f19-94f1-0ebbaad24cdc")))))
  (file-systems
   (cons* (file-system
-          (mount-point "/boot/efi")
-          (device (uuid "5C00-F2EB" 'fat32))
-          (type "vfat"))
-         (file-system
           (mount-point "/")
           (device
-           (uuid "13c97113-bc51-4185-bfb9-218c10a298d4" 'ext4))
+           (uuid "38209cc6-7934-46bb-a85c-1356e91fad06" 'ext4))
           (type "ext4"))
          (file-system
           (mount-point "/home")
           (device
-           (uuid "081d275f-145d-4b3a-80f7-cb5ba15b1fd4" 'ext4))
+           (uuid "d9016959-74c9-4eff-8266-246acb1c02f1" 'ext4))
           (type "ext4"))
-	 (file-system
-          (mount-point (string-append "/home/" user-name "/hdd"))
-          (device (uuid "d1210c09-8ca7-4665-a690-a21f31e0e0ce" 'ext4))
-          (type "ext4")
-          (create-mount-point? #t))
          %base-file-systems)))
